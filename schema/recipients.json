@@ -1,0 +1,11 @@
+{
+    "_id": "ObjectId",
+    "organization_name": "string",
+    "email": "string",
+    "phone_number": "string",
+    "address": "string",
+    "role": "Recipient",
+    "food_requests": ["ObjectId"],
+    "verification_status": "string",
+    "created_at": "ISODate"
+}

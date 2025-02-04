@@ -1,0 +1,17 @@
+[project]
+name = "vesit"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Vinayak Bhatia",email = "ntpjc2vinayak@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pymongo (>=4.11,<5.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

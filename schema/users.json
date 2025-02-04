@@ -1,0 +1,18 @@
+{
+    "_id": "ObjectId",
+    "name": "string",
+    "email": "string",
+    "phone_number": "string",
+    "address": "string",
+    "role": "Household",
+    "food_inventory": [
+        {
+            "food_name": "string",
+            "quantity": "integer",
+            "unit": "string",
+            "expiry_date": "ISODate"
+        }
+    ],
+    "donation_history": ["ObjectId"],
+    "created_at": "ISODate"
+}

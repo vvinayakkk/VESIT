@@ -1,0 +1,10 @@
+{
+    "_id": "ObjectId",
+    "assignment_id": "string",
+    "agent_id": "ObjectId",
+    "donation_id": "ObjectId",
+    "pickup_location": "string",
+    "delivery_location": "string",
+    "status": "string",
+    "created_at": "ISODate"
+}

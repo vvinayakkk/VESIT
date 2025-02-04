@@ -1,0 +1,10 @@
+{
+    "_id": "ObjectId",
+    "donor_id": "ObjectId",
+    "recipient_id": "ObjectId",
+    "food_items": ["string"],
+    "pickup_time": "ISODate",
+    "delivery_status": "string",
+    "agent_id": "ObjectId",
+    "created_at": "ISODate"
+}

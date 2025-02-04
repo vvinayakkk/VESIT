@@ -1,0 +1,12 @@
+{
+    "_id": "ObjectId",
+    "donor_id": "ObjectId",
+    "food_name": "string",
+    "category": "string",
+    "quantity": "integer",
+    "unit": "string",
+    "pickup_location": "string",
+    "expiry_date": "ISODate",
+    "status": "string",
+    "created_at": "ISODate"
+}

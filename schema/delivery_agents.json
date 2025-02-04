@@ -1,0 +1,14 @@
+{
+    "_id": "ObjectId",
+    "name": "string",
+    "email": "string",
+    "phone_number": "string",
+    "address": "string",
+    "role": "Delivery Agent",
+    "vehicle_type": "string",
+    "availability_status": "string",
+    "assigned_pickups": ["ObjectId"],
+    "completed_deliveries": ["ObjectId"],
+    "ratings": "float",
+    "created_at": "ISODate"
+}

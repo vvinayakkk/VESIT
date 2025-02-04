@@ -1,0 +1,9 @@
+{
+    "_id": "ObjectId",
+    "recipient_id": "ObjectId",
+    "food_category": "string",
+    "quantity_needed": "integer",
+    "urgency_level": "string",
+    "status": "string",
+    "created_at": "ISODate"
+}
