@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const DonorSchema = new mongoose.Schema({
-    business_name: { 
+    name: { 
       type: String, 
       required: true 
     },
@@ -22,6 +22,10 @@ const DonorSchema = new mongoose.Schema({
       type: String, 
       default: 'Donor' 
     },
+    password: {
+      type: String,
+      required: true
+    },
     food_listings: [{ 
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'FoodListing' 
@@ -36,6 +40,5 @@ const DonorSchema = new mongoose.Schema({
     }
   });
   
-  const Donor = mongoose.model('Donor', DonorSchema);
   
-  module.exports = { Donor };
+  module.exports =mongoose.model('Donor', DonorSchema);

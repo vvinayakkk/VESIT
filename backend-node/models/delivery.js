@@ -35,6 +35,6 @@ const PickupSchema = new mongoose.Schema({
  }
 });
 
-const Pickup = mongoose.model('Pickup', PickupSchema);
+//const Pickup = mongoose.model('Pickup', PickupSchema);
 
-module.exports = { Pickup };
+module.exports = mongoose.model('Pickup', PickupSchema);

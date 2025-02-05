@@ -36,6 +36,6 @@ const RecipientSchema = new mongoose.Schema({
   }
 });
 
-const Recipient = mongoose.model('Recipient', RecipientSchema);
+//const Recipient = mongoose.model('Recipient', RecipientSchema);
 
-module.exports = { Recipient };
+module.exports =  mongoose.model('Recipient', RecipientSchema);

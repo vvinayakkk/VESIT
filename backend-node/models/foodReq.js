@@ -29,6 +29,6 @@ const FoodRequestSchema = new mongoose.Schema({
  }
 });
 
-const FoodRequest = mongoose.model('FoodRequest', FoodRequestSchema);
+//const FoodRequest = mongoose.model('FoodRequest', FoodRequestSchema);
 
-module.exports = { FoodRequest };
+module.exports = mongoose.model('FoodRequest', FoodRequestSchema);

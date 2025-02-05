@@ -50,6 +50,6 @@ const DeliveryAgentSchema = new mongoose.Schema({
   }
 });
 
-const DeliveryAgent = mongoose.model('DeliveryAgent', DeliveryAgentSchema);
+//const DeliveryAgent = mongoose.model('DeliveryAgent', DeliveryAgentSchema);
 
-module.exports = { DeliveryAgent };
+module.exports = mongoose.model('DeliveryAgent', DeliveryAgentSchema);
