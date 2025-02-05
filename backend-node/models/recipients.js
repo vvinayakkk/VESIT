@@ -18,6 +18,10 @@ const RecipientSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+  password: {
+    type: String,
+    required: true
+  },
   role: { 
     type: String, 
     default: 'Recipient' 
@@ -34,6 +38,7 @@ const RecipientSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now 
   }
+  
 });
 
 //const Recipient = mongoose.model('Recipient', RecipientSchema);
