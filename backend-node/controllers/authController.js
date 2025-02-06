@@ -83,7 +83,7 @@ const getModel = (role) => {
    'Donor': Donor,
    'Recipient': Recipient,
    'Delivery Agent': DeliveryAgent,
-   'User': User
+   'Household': User,
  };
  return models[role];
 };
