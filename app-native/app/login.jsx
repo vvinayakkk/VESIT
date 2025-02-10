@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { UserContext } from '../context/UserContext';
 //import { useNavigation } from '@react-navigation/native';
 //import axios from 'axios';
 const API_URL = 'http://192.168.31.15:4000'; 
@@ -17,12 +18,13 @@ const API_URL = 'http://192.168.31.15:4000';
 const Login = () => {
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState('');
+  const {login} = useContext(UserContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  const roles = ['Household', 'Donor', 'Delivery Agent', 'Recipient'];
+  const roles = ['Household', 'Delivery Agent', 'Recipient'];
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
@@ -50,7 +52,15 @@ const Login = () => {
       if (response.ok) {
         console.log('Login successful:', data);
         // Navigate to home/dashboard
-        router.push('/dashboard');
+        //router.push('/dashboard');
+        login(data.user);
+        if(selectedRole === 'Household'){
+            router.push('/household');
+        }else if(selectedRole === 'Delivery Agent'){
+            router.push('/delivery');
+        }else{
+            router.push('/recipient');
+        }
       } else {
         console.error('Login failed:', data.message);
         alert(data.message || 'Login failed. Please try again.');

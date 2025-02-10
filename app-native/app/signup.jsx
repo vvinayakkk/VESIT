@@ -16,7 +16,7 @@ const Signup = () => {
   });
   const router = useRouter();
 
-  const roles = ['Household', 'Donor', 'Delivery Agent', 'Recipient'];
+  const roles = ['Household', 'Delivery Agent', 'Recipient'];
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
