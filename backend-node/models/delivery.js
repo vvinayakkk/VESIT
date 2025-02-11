@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PickupSchema = new mongoose.Schema({
+const DeliverySchema = new mongoose.Schema({
  assignment_id: {
    type: String,
    required: true,
@@ -17,24 +17,72 @@ const PickupSchema = new mongoose.Schema({
    required: true
  },
  pickup_location: {
-   type: String,
-   required: true
+   address: { type: String, required: true },
+   coordinates: {
+     type: [Number],
+     index: '2dsphere'
+   }
  },
  delivery_location: {
-   type: String,
-   required: true
+   address: { type: String, required: true },
+   coordinates: {
+     type: [Number],
+     index: '2dsphere'
+   }
+ },
+ current_location: {
+   coordinates: {
+     type: [Number],
+     index: '2dsphere'
+   },
+   timestamp: { type: Date, default: Date.now }
  },
  status: {
    type: String,
-   enum: ['Assigned', 'In Progress', 'Completed', 'Cancelled'],
+   enum: [
+     'Assigned',
+     'In Progress',
+     'Pickup Reached',
+     'In Transit',
+     'At Destination',
+     'Completed',
+     'Delayed',
+     'Cancelled'
+   ],
    default: 'Assigned'
  },
+ issues: [{
+   type: {
+     type: String,
+     enum: ['DELAY', 'VEHICLE_BREAKDOWN', 'TRAFFIC', 'OTHER']
+   },
+   description: String,
+   timestamp: Date,
+   location: {
+     coordinates: {
+       type: [Number],
+       index: '2dsphere'
+     },
+     timestamp: Date
+   },
+   resolved: {
+     type: Boolean,
+     default: false
+   }
+ }],
+ eta: Date,
+ actual_route: [{
+   coordinates: [Number],
+   timestamp: Date,
+   event: String
+ }],
  created_at: {
    type: Date,
    default: Date.now
  }
 });
 
-//const Pickup = mongoose.model('Pickup', PickupSchema);
+// Add index for geospatial queries
+DeliverySchema.index({ 'current_location.coordinates': '2dsphere' });
 
-module.exports = mongoose.model('Pickup', PickupSchema);
+module.exports = mongoose.model('Delivery', DeliverySchema);

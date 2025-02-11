@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 //import { useNavigation } from '@react-navigation/native';
 //import axios from 'axios';
-const API_URL = 'http://192.168.31.15:4000'; 
+const API_URL = 'http://192.168.0.115:4000'; 
 
 const Login = () => {
   const router = useRouter();

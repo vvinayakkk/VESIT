@@ -3,8 +3,42 @@
     "assignment_id": "string",
     "agent_id": "ObjectId",
     "donation_id": "ObjectId",
-    "pickup_location": "string",
-    "delivery_location": "string",
+    "pickup_location": {
+        "type": "object",
+        "properties": {
+            "address": "string",
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "delivery_location": {
+        "type": "object",
+        "properties": {
+            "address": "string",
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    },
+    "current_location": {
+        "type": "object",
+        "properties": {
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            },
+            "timestamp": "ISODate"
+        }
+    },
     "status": "string",
     "created_at": "ISODate"
 }

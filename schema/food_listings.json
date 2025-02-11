@@ -5,7 +5,18 @@
     "category": "string",
     "quantity": "integer",
     "unit": "string",
-    "pickup_location": "string",
+    "pickup_location": {
+        "type": "object",
+        "properties": {
+            "address": "string",
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
+            }
+        }
+    },
     "expiry_date": "ISODate",
     "status": "string",
     "created_at": "ISODate"

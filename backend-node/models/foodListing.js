@@ -23,8 +23,11 @@ const FoodListingSchema = new mongoose.Schema({
     required: true 
   },
   pickup_location: { 
-    type: String, 
-    required: true 
+    address: { type: String, required: true },
+    coordinates: {
+      type: [Number], // [longitude, latitude]
+      index: '2dsphere' // Enable geospatial queries
+    }
   },
   expiry_date: { 
     type: Date, 
@@ -39,5 +42,5 @@ const FoodListingSchema = new mongoose.Schema({
     default: Date.now 
   }
 });
-//const FoodListing = mongoose.model('FoodListing', FoodListingSchema);
+
 module.exports = mongoose.model('FoodListing', FoodListingSchema);

@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Animated, { 
   useSharedValue, 
-  withSpring,
-  useAnimatedStyle,
-  withSequence,
-  withDelay
+  useAnimatedStyle, 
+  withSequence, 
+  withSpring, 
+  withDelay, 
+  runOnUI 
 } from 'react-native-reanimated';
-import '../global.css'
 import { useRouter } from 'expo-router';
 
 const Home = () => {
@@ -17,20 +17,19 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Initial animation for first ring
-    ring1padding.value = withSequence(
-      withSpring(25, { damping: 6 }),
-      withDelay(200, withSpring(15, { damping: 6 }))
-    );
+    runOnUI(() => {
+      ring1padding.value = withSequence(
+        withSpring(25, { damping: 6 }),
+        withDelay(200, withSpring(15, { damping: 6 }))
+      );
 
-    // Initial animation for second ring
-    ring2padding.value = withSequence(
-      withSpring(35, { damping: 6 }),
-      withDelay(200, withSpring(25, { damping: 6 }))
-    );
-  }, []); // Empty dependency array ensures it only runs once on mount
+      ring2padding.value = withSequence(
+        withSpring(35, { damping: 6 }),
+        withDelay(200, withSpring(25, { damping: 6 }))
+      );
+    })();
+  }, []);
 
-  // Create animated styles
   const animatedStyleRing1 = useAnimatedStyle(() => ({
     padding: ring1padding.value,
   }));

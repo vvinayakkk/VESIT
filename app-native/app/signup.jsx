@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
 // import axios from 'axios';
 
-const API_URL = 'http://192.168.31.15:4000';  // Ensure this is consistent with your backend
+const API_URL = 'http://192.168.0.115:4000';  // Ensure this is consistent with your backend
 const Signup = () => {
   const [selectedRole, setSelectedRole] = useState('');
   const [formData, setFormData] = useState({
