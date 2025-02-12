@@ -28,7 +28,7 @@ const DeliveryAgentSchema = new mongoose.Schema({
   },
   vehicle_type: { 
     type: String, 
-    required: true 
+    //required: true 
   },
   availability_status: { 
     type: String, 

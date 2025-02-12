@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 import React, { useContext, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   Text,
@@ -13,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { UserContext } from '../context/UserContext';
 //import { useNavigation } from '@react-navigation/native';
 //import axios from 'axios';
-const API_URL = 'http://192.168.31.15:4000'; 
+const API_URL = 'http://192.168.1.131:4000'; 
 
 const Login = () => {
   const router = useRouter();
@@ -53,7 +54,9 @@ const Login = () => {
         console.log('Login successful:', data);
         // Navigate to home/dashboard
         //router.push('/dashboard');
+        await AsyncStorage.setItem('userData', JSON.stringify(data.user));
         login(data.user);
+
         if(selectedRole === 'Household'){
             router.push('/household');
         }else if(selectedRole === 'Delivery Agent'){

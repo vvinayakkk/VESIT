@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView , Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
-// import axios from 'axios';
 
-const API_URL = 'http://192.168.31.15:4000';  // Ensure this is consistent with your backend
+const API_URL = 'http://192.168.1.131:4000'; // Ensure this is consistent with your backend
+
 const Signup = () => {
   const [selectedRole, setSelectedRole] = useState('');
   const [formData, setFormData] = useState({
@@ -13,9 +13,11 @@ const Signup = () => {
     address: '',
     email: '',
     password: '',
+    vehicle_type: '',
+    isOrganization: false
   });
-  const router = useRouter();
 
+  const router = useRouter();
   const roles = ['Household', 'Delivery Agent', 'Recipient'];
 
   const handleInputChange = (field, value) => {
@@ -26,6 +28,12 @@ const Signup = () => {
   };
 
   const handleSignup = async () => {
+    if (!selectedRole) {
+      alert('Please select a role before signing up.');
+      return;
+    }
+    console.log(formData)
+
     try {
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
@@ -44,7 +52,7 @@ const Signup = () => {
       if (response.ok) {
         console.log('Signup successful:', data);
         alert('Account created successfully! Please log in.');
-        router.push('/login');  // Use router.push() for navigation
+        router.push('/login');
       } else {
         console.error('Signup failed:', data.message);
         alert(data.message || 'Signup failed. Please try again.');
@@ -57,7 +65,7 @@ const Signup = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
-      <ScrollView className="px-6 py-6 mt-5">
+      <ScrollView className="px-6 py-6 mt-4">
         <TouchableOpacity onPress={() => router.back()} className="absolute top-0.1 left-0.1 z-10">
           <Icon name="arrow-left" size={24} color="black" />
         </TouchableOpacity>
@@ -66,7 +74,7 @@ const Signup = () => {
         </Text>
 
         {/* Role Selection */}
-        <View className="mb-6">
+        <View className="mb-2">
           <Text className="text-lg px-2 font-semibold text-gray-900 mb-3">
             Select Role
           </Text>
@@ -93,6 +101,60 @@ const Signup = () => {
           </View>
         </View>
 
+        {/* Vehicle Type Selection (Only for Delivery Agents) */}
+        {selectedRole === 'Delivery Agent' && (
+          <View className="mb-3">
+            <Text className="text-gray-600 text-base mb-2">Select your vehicle type (required):</Text>
+            <View className="flex-row justify-between">
+              {['Bike', 'Scooty', 'Bicycle'].map((vehicle) => (
+                <TouchableOpacity 
+                  key={vehicle}
+                  className={`flex-row items-center space-x-2 ${
+                    formData.vehicle_type === vehicle ? 'opacity-100' : 'opacity-50'
+                  }`}
+                  onPress={() => handleInputChange('vehicle_type', vehicle)}
+                >
+                  <View className={`w-5 h-5 rounded-full border-2 border-blue-500 ${
+                    formData.vehicle_type === vehicle ? 'bg-blue-500' : 'bg-white'
+                  }`} />
+                  <Text className="text-gray-700 p-1">{vehicle}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+            {selectedRole === 'Delivery Agent' && !formData.vehicle_type && (
+              <Text className="text-red-500 text-sm mt-1">Please select a vehicle type</Text>
+            )}
+          </View>
+        )}
+
+        {/* Organization Selection (Only for Household Role) */}
+        {selectedRole === 'Household' && (
+          <View className="mb-3 flex-row items-center">
+            <Text className="text-gray-600 text-base mr-4">Are you an Organization?</Text>
+            <View className="flex-row">
+              <TouchableOpacity 
+                className={`flex-row items-center mr-4 ${formData.isOrganization ? 'opacity-100' : 'opacity-50'}`}
+                onPress={() => handleInputChange('isOrganization', true)}
+              >
+                <View className={`w-5 h-5 rounded-full border-2 border-amber-500 mr-2 ${
+                  formData.isOrganization ? 'bg-amber-500' : 'bg-white'
+                }`} />
+                <Text>Yes</Text>
+              </TouchableOpacity>
+              
+              <TouchableOpacity 
+                className={`flex-row items-center ${!formData.isOrganization ? 'opacity-100' : 'opacity-50'}`}
+                onPress={() => handleInputChange('isOrganization', false)}
+              >
+                <View className={`w-5 h-5 rounded-full border-2 border-amber-500 mr-2 ${
+                  !formData.isOrganization ? 'bg-amber-500' : 'bg-white'
+                }`} />
+                <Text>No</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+
         {/* Form Inputs */}
         <View className="space-y-5">
           {[
@@ -116,15 +178,13 @@ const Signup = () => {
 
         {/* Sign-Up Button */}
         <TouchableOpacity
-          className="bg-orange-500 py-4 rounded-lg items-center mt-6 shadow-md"
+          className="bg-orange-500 py-4 rounded-lg items-center mt-5 shadow-md"
           onPress={handleSignup}
         >
           <Text className="text-white text-lg font-semibold">Sign Up</Text>
         </TouchableOpacity>
-
-        {/* Social Login */}
-        <View className="mt-8 items-center">
-          <Text className="text-gray-600 text-base mb-4">Or Connect with</Text>
+        <View className="mt-2 items-center">
+          <Text className="text-gray-600 text-base mb-2">Or Connect with</Text>
           <View className="flex-row gap-5">
             {[
               { icon: 'twitter', bg: '#1DA1F2' },

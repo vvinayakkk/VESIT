@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Dimensions, FlatList, ScrollView } from 'react-native';
 import Header from '../component/header';
-import { useRouter, Tabs } from 'expo-router';
+import { useRouter, Tabs, router } from 'expo-router';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AnimatedQuote from '../component/typerwritter';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { UserContext } from '../../context/UserContext';
 
 const nearbyOrgs = [
   {
@@ -34,6 +36,27 @@ const Home = () => {
   const { width } = Dimensions.get('window');
   const [selectedOrg, setSelectedOrg] = useState(null);
   const router = useRouter();
+  const {login} = useContext(UserContext);
+  useEffect(() => {
+    checkExistingSession();
+  }, []);
+  
+  const checkExistingSession = async () => {
+    try {
+      const userData = await AsyncStorage.getItem('userData');
+      //const userRole = await AsyncStorage.getItem('userRole');
+      
+      if (userData ) {
+        const user = JSON.parse(userData);
+        login(user);
+        
+        router.push('/household/home')
+      }
+    } catch (error) {
+      console.error('Error checking session:', error);
+    }
+  };
+  
 
   const renderOrgItem = ({ item }) => (
     <TouchableOpacity 

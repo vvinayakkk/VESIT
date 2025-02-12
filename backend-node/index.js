@@ -22,4 +22,7 @@ app.use('/auth', require('./routes/authRoutes'));
 
 app.use(verifyJWT);
 
+app.use('/user', require('./routes/userRoutes'));
+app.use('/delivery' , require('./routes/deliveryRoutes'));
+
 app.listen(port,()=>console.log(`Server running on Port ${port}`));
