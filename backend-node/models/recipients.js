@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const RecipientSchema = new mongoose.Schema({
-  organization_name: { 
+  name: { 
     type: String, 
     required: true 
   },

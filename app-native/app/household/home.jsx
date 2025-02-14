@@ -76,10 +76,9 @@ const Home = () => {
   );
 
   return (
-    <ScrollView>
-    <View className="flex-1 bg-white">
+      <View className="flex-1 bg-white">
       <Header />
-      
+      <ScrollView />
       <View className="relative p-4">
         <View className="overflow-hidden rounded-2xl shadow-lg">
           <Image 
@@ -135,8 +134,8 @@ const Home = () => {
           showsVerticalScrollIndicator={false}
         />
       </View>
+      <ScrollView />
     </View>
-    </ScrollView>
   );
 };
 

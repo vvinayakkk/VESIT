@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, SafeAreaView, Aler
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
 
-const API_URL = 'http://192.168.1.131:4000'; // Ensure this is consistent with your backend
+const API_URL = 'http://192.168.31.15:4000'; // Ensure this is consistent with your backend
 
 const Signup = () => {
   const [selectedRole, setSelectedRole] = useState('');
@@ -14,7 +14,8 @@ const Signup = () => {
     email: '',
     password: '',
     vehicle_type: '',
-    isOrganization: false
+    isOrganization: false,
+    organization_name: '',
   });
 
   const router = useRouter();
@@ -183,24 +184,6 @@ const Signup = () => {
         >
           <Text className="text-white text-lg font-semibold">Sign Up</Text>
         </TouchableOpacity>
-        <View className="mt-2 items-center">
-          <Text className="text-gray-600 text-base mb-2">Or Connect with</Text>
-          <View className="flex-row gap-5">
-            {[
-              { icon: 'twitter', bg: '#1DA1F2' },
-              { icon: 'google', bg: '#DB4437' },
-              { icon: 'facebook', bg: '#4267B2' }
-            ].map(({ icon, bg }) => (
-              <TouchableOpacity
-                key={icon}
-                className="w-12 h-12 rounded-full items-center justify-center"
-                style={{ backgroundColor: bg }}
-              >
-                <Icon name={icon} size={24} color="white" />
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

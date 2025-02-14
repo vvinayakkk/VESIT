@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 
-const API_URL = 'http://192.168.1.131:4000';
+const API_URL = 'http://192.168.31.15:4000';
 
 const StatusButton = ({ label, count, isActive, onPress, color }) => (
   <TouchableOpacity 

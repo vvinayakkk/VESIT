@@ -6,7 +6,7 @@ import { UserContext } from '../../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 
-const API_URL = 'http://192.168.1.131:4000';
+const API_URL = 'http://192.168.31.15:4000';
 
 const colors = ['bg-blue-100', 'bg-teal-100' , 'bg-yellow-100', 'bg-red-100', 'bg-purple-100', 'bg-pink-100'];
 

@@ -24,5 +24,6 @@ app.use(verifyJWT);
 
 app.use('/user', require('./routes/userRoutes'));
 app.use('/delivery' , require('./routes/deliveryRoutes'));
+app.use('/recipient' , require('./routes/recipientRoutes'));
 
 app.listen(port,()=>console.log(`Server running on Port ${port}`));

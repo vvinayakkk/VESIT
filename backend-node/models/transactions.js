@@ -21,7 +21,7 @@ const TransactionSchema = new mongoose.Schema({
  },
  delivery_status: {
    type: String,
-   default: 'Pending',
+   default: 'Completed',
    enum: ['Pending', 'In Progress', 'Completed', 'Cancelled']
  },
  agent_id: {

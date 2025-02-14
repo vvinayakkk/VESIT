@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Donate = () => {
-  const API_URL = 'http://192.168.1.131:4000'; 
+  const API_URL = 'http://192.168.31.15:4000'; 
   const router = useRouter();
   const { user , login } = useContext(UserContext);
   const [mealType, setMealType] = useState('');
