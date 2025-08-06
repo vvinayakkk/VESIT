@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: vesit-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: vesit_food_donation
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./schema:/docker-entrypoint-initdb.d
+    networks:
+      - vesit-network
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./backend-node
+      dockerfile: Dockerfile
+    container_name: vesit-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - MONGO_URI=mongodb://admin:password123@mongodb:27017/vesit_food_donation?authSource=admin
+      - JWT_SECRET=your_super_secret_jwt_key_here_production
+    ports:
+      - "4000:4000"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend-node:/app
+      - /app/node_modules
+    networks:
+      - vesit-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Redis for caching (uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: vesit-redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - vesit-network
+
+volumes:
+  mongodb_data:
+    driver: local
+  # redis_data:
+  #   driver: local
+
+networks:
+  vesit-network:
+    driver: bridge 

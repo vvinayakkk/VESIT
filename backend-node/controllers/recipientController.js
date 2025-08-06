@@ -70,5 +70,49 @@ const getFoodReq = async(req, res) => {
         res.status(500).json({ message: 'Error fetching food requests', error: e.message });
     }
 }
+const cancelRequest = async (req, res) => {
+    try {
+        const request = await FoodRequest.findByIdAndDelete(req.params.id);
+        if (!request) {
+            return res.status(404).json({ message: 'Request not found' });
+        }
+        res.status(200).json({ message: 'Request cancelled successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
-module.exports = { RequestFood , claimFood , getFoodReq };
+const getRecipientProfile = async (req, res) => {
+    try {
+        const recipient = await Recipient.findById(req.params.id);
+        if (!recipient) {
+            return res.status(404).json({ message: 'Recipient not found' });
+        }
+        res.status(200).json({ recipient });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+const updateRecipientProfile = async (req, res) => {
+    try {
+        const updates = req.body;
+        delete updates.password;
+        
+        const recipient = await Recipient.findByIdAndUpdate(
+            req.params.id,
+            { $set: updates },
+            { new: true }
+        );
+        
+        if (!recipient) {
+            return res.status(404).json({ message: 'Recipient not found' });
+        }
+        
+        res.status(200).json({ recipient });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { RequestFood, claimFood, getFoodReq, cancelRequest, getRecipientProfile, updateRecipientProfile };
