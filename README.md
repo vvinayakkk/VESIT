@@ -277,99 +277,99 @@ stateDiagram-v2
 ```mermaid
 erDiagram
     USERS {
-        ObjectId _id PK
-        String email UK
-        String password
-        String name
-        String phone
-        String address
-        String userType
-        String profileImage
-        Boolean isVerified
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string email UK
+        string password
+        string name
+        string phone
+        string address
+        string userType
+        string profileImage
+        boolean isVerified
+        date createdAt
+        date updatedAt
     }
     
     FOOD_LISTINGS {
-        ObjectId _id PK
-        ObjectId donorId FK
-        String foodName
-        String description
-        Number quantity
-        String unit
-        Date expiryDate
-        String status
-        String pickupAddress
-        Array images
-        String dietaryInfo
-        Boolean isPerishable
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string donorId FK
+        string foodName
+        string description
+        number quantity
+        string unit
+        date expiryDate
+        string status
+        string pickupAddress
+        array images
+        string dietaryInfo
+        boolean isPerishable
+        date createdAt
+        date updatedAt
     }
     
     RECIPIENTS {
-        ObjectId _id PK
-        ObjectId userId FK
-        String requestType
-        String foodPreferences
-        Number familySize
-        String urgency
-        String status
-        String dietaryRestrictions
-        String address
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string userId FK
+        string requestType
+        string foodPreferences
+        number familySize
+        string urgency
+        string status
+        string dietaryRestrictions
+        string address
+        date createdAt
+        date updatedAt
     }
     
     DELIVERIES {
-        ObjectId _id PK
-        ObjectId foodListingId FK
-        ObjectId recipientId FK
-        ObjectId agentId FK
-        String status
-        Date pickupTime
-        Date deliveryTime
-        String notes
-        String trackingCode
-        Number estimatedDuration
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string foodListingId FK
+        string recipientId FK
+        string agentId FK
+        string status
+        date pickupTime
+        date deliveryTime
+        string notes
+        string trackingCode
+        number estimatedDuration
+        date createdAt
+        date updatedAt
     }
     
     DELIVERY_AGENTS {
-        ObjectId _id PK
-        String name
-        String phone
-        String email
-        String vehicleType
-        String status
-        ObjectId currentDeliveryId FK
-        String licenseNumber
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string name
+        string phone
+        string email
+        string vehicleType
+        string status
+        string currentDeliveryId FK
+        string licenseNumber
+        date createdAt
+        date updatedAt
     }
     
     TRANSACTIONS {
-        ObjectId _id PK
-        ObjectId donorId FK
-        ObjectId recipientId FK
-        ObjectId deliveryId FK
-        String transactionType
-        Number amount
-        String status
-        String paymentMethod
-        Date createdAt
-        Date updatedAt
+        string _id PK
+        string donorId FK
+        string recipientId FK
+        string deliveryId FK
+        string transactionType
+        number amount
+        string status
+        string paymentMethod
+        date createdAt
+        date updatedAt
     }
     
     NOTIFICATIONS {
-        ObjectId _id PK
-        ObjectId userId FK
-        String type
-        String title
-        String message
-        Boolean isRead
-        Date createdAt
+        string _id PK
+        string userId FK
+        string type
+        string title
+        string message
+        boolean isRead
+        date createdAt
     }
     
     USERS ||--o{ FOOD_LISTINGS : "donates"
