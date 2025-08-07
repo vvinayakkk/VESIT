@@ -232,14 +232,6 @@ sequenceDiagram
     AI->>API: POST /ai/process
     API->>AI: Process Request
     AI->>U: Voice Response
-    
-    style U fill:#e8f5e8
-    style MA fill:#e3f2fd
-    style WA fill:#fff3e0
-    style AI fill:#fce4ec
-    style API fill:#f3e5f5
-    style DB fill:#e1f5fe
-    style Cache fill:#f1f8e9
 ```
 
 ## 🔐 Authentication State Machine
