@@ -279,8 +279,8 @@ stateDiagram-v2
 ```mermaid
 erDiagram
     USERS {
-        string _id PK
-        string email UK
+        string _id
+        string email
         string password
         string name
         string phone
@@ -293,8 +293,8 @@ erDiagram
     }
     
     FOOD_LISTINGS {
-        string _id PK
-        string donorId FK
+        string _id
+        string donorId
         string foodName
         string description
         number quantity
@@ -302,7 +302,6 @@ erDiagram
         date expiryDate
         string status
         string pickupAddress
-        array images
         string dietaryInfo
         boolean isPerishable
         date createdAt
@@ -310,8 +309,8 @@ erDiagram
     }
     
     RECIPIENTS {
-        string _id PK
-        string userId FK
+        string _id
+        string userId
         string requestType
         string foodPreferences
         number familySize
@@ -324,10 +323,10 @@ erDiagram
     }
     
     DELIVERIES {
-        string _id PK
-        string foodListingId FK
-        string recipientId FK
-        string agentId FK
+        string _id
+        string foodListingId
+        string recipientId
+        string agentId
         string status
         date pickupTime
         date deliveryTime
@@ -339,23 +338,23 @@ erDiagram
     }
     
     DELIVERY_AGENTS {
-        string _id PK
+        string _id
         string name
         string phone
         string email
         string vehicleType
         string status
-        string currentDeliveryId FK
+        string currentDeliveryId
         string licenseNumber
         date createdAt
         date updatedAt
     }
     
     TRANSACTIONS {
-        string _id PK
-        string donorId FK
-        string recipientId FK
-        string deliveryId FK
+        string _id
+        string donorId
+        string recipientId
+        string deliveryId
         string transactionType
         number amount
         string status
@@ -365,8 +364,8 @@ erDiagram
     }
     
     NOTIFICATIONS {
-        string _id PK
-        string userId FK
+        string _id
+        string userId
         string type
         string title
         string message
@@ -429,11 +428,6 @@ graph TB
         BB --> CC[Health Checks]
         CC --> DD[Monitor & Alert]
     end
-    
-    style A fill:#e8f5e8
-    style G fill:#fff3e0
-    style M fill:#f3e5f5
-    style V fill:#e3f2fd
 ```
 
 ## 🔄 Microservice Communication
@@ -492,11 +486,6 @@ graph TB
     H --> P
     I --> Q
     H --> R
-    
-    style A fill:#e3f2fd
-    style E fill:#e8f5e8
-    style K fill:#f3e5f5
-    style O fill:#fff3e0
 ```
 
 ## 🔄 CI/CD Pipeline Overview
@@ -565,12 +554,6 @@ graph LR
     S --> T
     T --> U
     U --> V
-    
-    style A fill:#e8f5e8
-    style D fill:#e3f2fd
-    style J fill:#fff3e0
-    style N fill:#f3e5f5
-    style S fill:#fce4ec
 ```
 
 ## 🛠️ Technologies Used
