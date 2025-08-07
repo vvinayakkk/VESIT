@@ -1,5 +1,7 @@
 # VESIT Food Donation Platform
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/30a88d0d-9421-4cd6-b3f2-621238f7c689" />
+
 A comprehensive full-stack food donation platform solving the critical challenge of food waste and hunger through innovative technology. The platform connects food donors with recipients in need, enabling efficient food redistribution while reducing waste and addressing food insecurity in communities.
 
 ## 🎯 Problem Statement
